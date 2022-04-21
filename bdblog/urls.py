@@ -20,12 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index,name = "index"), # redirect için name = index
+    path('', views.index,name = "index"),
     path('about/', views.about,name = "about"),
-    # path('detail/<int:id>', views.detail,name = "detail"),
-    # path('articles/deneme1', views.about,name = "about"), # böyle 100 denemeye kadar gidebilir kalıp aynı
-    path('articles/',include("article.urls")), #/articles/create gelirse buraya bakar sonra articles.url içine bakar.
-    path('user/',include("user.urls")), #user/register vb..
+    path('articles/',include("article.urls")),
+    path('user/',include("user.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
