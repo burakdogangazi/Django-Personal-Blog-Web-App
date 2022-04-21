@@ -6,15 +6,12 @@ from .forms import ArticleForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-# Create your views here.
-#url gelince çalışacak fonksiyonlar
 
 
-# django bölümünde 222. video yorumlarında Articel kullanırken from article.models import Article yapmalısın
 
 def articles(request):
 
-    keyword = request.GET.get("keyword") # name e göre "keyword"
+    keyword = request.GET.get("keyword")
 
     if (keyword):
         articles = Article.objects.filter(title__contains = keyword)
@@ -29,15 +26,12 @@ def index(request):
     context = {
         "numbers":[1,2,3,4,5,6]
     }
-    return render(request,"index.html",context) # eğer template altında başka bir klasöründe altında ise article/index.html yazılmalı
+    return render(request,"index.html",context)
 
 
 def about(request):
     return render(request,"about.html")
 
-
-# def detail(request,id):
-#     return HttpResponse("Detail" + str(id))
 
 @login_required(login_url="user:login")
 def dashboard(request):
@@ -68,7 +62,6 @@ def addArticle(request):
     return render(request,"addarticle.html",{"form":form})
 
 def detail(request,id):
-    # article = Article.objects.filter(id = id).first() # liste dönüyor tek obje dönmüyor tek obje almak için first() yazdık
     article = get_object_or_404(Article,id = id)
     comments = article.comments.all()
 
@@ -79,8 +72,7 @@ def detail(request,id):
 def updateArticle(request,id):
 
     article = get_object_or_404(Article,id = id)
-    form = ArticleForm(request.POST or None,request.FILES or None,instance=article) # instance içine objeyi gönderdik bilgiler article form içine yazılması için
-    #instance sayesinde güncelleme sırasında önceki bilgileri aldık
+    form = ArticleForm(request.POST or None,request.FILES or None,instance=article)
     if(form.is_valid()):
         
         article = form.save(commit=False)
@@ -103,7 +95,7 @@ def deleteArticle(request,id):
 
     messages.success(request,"Makale Başarıyla Silindi")
 
-    return redirect("article:dashboard") # artilce uyg altındaki url dosyasına bakar dashboardı döner
+    return redirect("article:dashboard")
 
 
 def addComment(request,id):
@@ -115,7 +107,5 @@ def addComment(request,id):
         newComment = Comment(comment_author = comment_author,comment_content = comment_content)
         newComment.article = article
         newComment.save()
-
-    # return redirect("/articles/article/"+str(id))
 
     return redirect(reverse("article:detail",kwargs={"id" : id}))
