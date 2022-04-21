@@ -41,13 +41,11 @@
                         <!-- Preview image figure-->
                         {% if article.article_image %}
                             <figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt="" /></figure>
-                        {% endif %} <!-- bu if eğer article_image yoksa dosyada hata vermesin diye -->
-
+                        {% endif %} 
                         <!-- Post content-->
 
                         <p class ="lead">
                             {{article.content|safe|truncatewords:10}} 
-                            <!-- safe ile makale de içerikler html kodu ile değil yazı ile bunlar güvenli anlamında kullanıyoruz.-->
                         </p>
                          <a style = "float : right;" href="{% url 'article:detail' article.id %}" class = "btn btn-danger">Devamını Oku</a>
                         <hr>
