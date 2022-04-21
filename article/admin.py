@@ -17,7 +17,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     list_filter = ["created_date"]
 
-    class Meta(): # django zorunlu class
+    class Meta():
         model =Article
 
 
