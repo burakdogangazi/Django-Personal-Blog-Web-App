@@ -12,7 +12,7 @@ def register(request):
 
 
     form = RegisterForm(request.POST or None)
-    if(form.is_valid()):#clean metodunu çağırır formsdaki bu fonksiyon çağırılınca django otomatik yapar
+    if(form.is_valid()):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
 
@@ -64,7 +64,7 @@ def loginUser(request):
         "form": form
     }
 
-    if(form.is_valid()): # forms içindeki cleanı biz yazdık yuarkıda artık nerede is valid o clean çalışacak
+    if(form.is_valid()):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
 
