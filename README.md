@@ -1,2 +1,2 @@
 # Django-Personal-Blog-Web-App
-Responsive personal web application with Django And SQLite
+Responsive personal website with Django And SQLite
