@@ -10,7 +10,6 @@ urlpatterns = [
     path('update/<int:id>',views.updateArticle,name="update"),
     path('delete/<int:id>',views.deleteArticle,name="delete"),
     path('',views.articles,name="articles"),
-    #içi boş çünkü ana url de artilces gelince buraya bak dedik
     path('comment/<int:id>',views.addComment,name="comment"),
 ]
 
