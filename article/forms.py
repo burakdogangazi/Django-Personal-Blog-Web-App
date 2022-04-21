@@ -1,7 +1,7 @@
 from django import forms
-from .models import Article #input alanı için
+from .models import Article 
 class ArticleForm(forms.ModelForm):
-    class Meta:# hazır input alanı için django doc bak
+    class Meta:
         model = Article
         fields = ["title","content","article_image"]
 
